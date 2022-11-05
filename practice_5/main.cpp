@@ -2,11 +2,12 @@
 // Created by musht on 04.11.2022.
 //
 
-#include "include/Matrix.h"
-int main() {
-    Matrix<double> m{{1, 15}, {3, 1}};
-    std::cout   << m << "\n"
-                << m.invert() << "\n"
-                << m.invert() * m << "\n";
+#include "include/SLESolver.h"
 
+int main() {
+    Matrix<int> system{{3, -5}, {2, 7}};
+    Vector<int> res{13, 81};
+    SLESolver<int> solver(system, res);
+    Vector<double> solution = solver.findSolution();
+    std::cout << solution;
 }
