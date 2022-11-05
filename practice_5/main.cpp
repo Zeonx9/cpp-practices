@@ -5,9 +5,7 @@
 #include "include/SLESolver.h"
 
 int main() {
-    Matrix<int> system{{3, -5}, {2, 7}};
-    Vector<int> res{13, 81};
-    SLESolver<int> solver(system, res);
-    Vector<double> solution = solver.findSolution();
+    auto solver = SLESolver<int>::inputSLE();
+    auto solution = solver.findSolution();
     std::cout << solution;
 }

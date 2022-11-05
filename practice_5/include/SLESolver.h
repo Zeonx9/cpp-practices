@@ -16,7 +16,9 @@ private:
     Vector<T> swapColumn(int j, Vector<T> &v);
 public:
     // constructs solver from given coeffitiens and vector-column of right part values
-    SLESolver(Matrix<T> &matr, Vector<T> &v);
+    SLESolver(const Matrix<T> &matr, const Vector<T> &v);
+
+    static SLESolver<T> inputSLE();
 
     Vector<double> findSolution();
 };

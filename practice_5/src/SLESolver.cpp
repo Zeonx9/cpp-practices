@@ -7,7 +7,7 @@ template class SLESolver<int>;
 template class SLESolver<double>;
 
 template<class T>
-SLESolver<T>::SLESolver(Matrix<T> &matr, Vector<T> &v) : coefs(matr), col(v) {}
+SLESolver<T>::SLESolver(const Matrix<T> &matr, const Vector<T> &v) : coefs(matr), col(v) {}
 
 template<class T>
 Vector<T> SLESolver<T>::swapColumn(int j, Vector<T> &v) {
@@ -27,4 +27,25 @@ Vector<double> SLESolver<T>::findSolution() {
         swapColumn(j, cur);
     }
     return Vector<double>(results);
+}
+
+template<class T>
+SLESolver<T> SLESolver<T>::inputSLE() {
+    int n;
+    std::cout   << "Enter number of variables in equation or number of equations in system, they must be equal:\n";
+    std::cin >> n;
+    std::vector<Vector<T>> system;
+    std::vector<T> result(n, 0);
+    std::cout << "Enter coefficients separating them with whitespace\n";
+    for (int i = 0; i < n; ++i) {
+        std::cout << "coeffitients of " << i + 1 << " equation:\n";
+        std::vector<T> equation(n, 0);
+        for (int j = 0; j < n; ++j) {
+            std::cin >> equation[j];
+        }
+        system.emplace_back(equation);
+        std::cout << "enter number after '=':\n";
+        std::cin >> result[i];
+    }
+    return {Matrix(system), Vector(result)};
 }
