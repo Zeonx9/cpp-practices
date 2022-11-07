@@ -20,6 +20,10 @@ Vector<T> SLESolver<T>::swapColumn(int j, Vector<T> &v) {
 template<class T>
 Vector<double> SLESolver<T>::findSolution() {
     double det = coefs.det();
+    if (det == 0) {
+        std::cout << "coeffitients matrix has a zero determinant, roots cannot be found using Cramer's rule!\n";
+        return Vector<double>(1);
+    }
     std::vector<double> results;
     for (int j = 0; j < coefs.m(); ++j) {
         auto cur = swapColumn(j, col);

@@ -7,6 +7,7 @@
 
 #include "Matrix.h"
 
+// class privides methods to solve systems of linear equations by using Cramer's rule
 template<class T>
 class SLESolver {
 private:
