@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define A
+#define C
 
 #ifdef A
 void sort(int arr[], int n) {

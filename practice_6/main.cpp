@@ -3,10 +3,10 @@
 //
 #include <iostream>
 
-#define B
+#define A
 
 #ifdef A
-#include "DynArray.h"
+#include "include/DynArray.h"
 
 int main() {
     DynArray<int> a{1, 2, 3}, b{4, 5, 6};
