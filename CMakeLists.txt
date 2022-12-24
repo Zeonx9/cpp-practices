@@ -18,3 +18,5 @@ add_executable(practice_6 practice_6/include/DynArray.h practice_6/src/DynArray.
 add_executable(practice_7 practice_7/main.cpp)
 
 add_executable(practice_8 practice_8/main.cpp practice_8/LinkedList.h)
+
+add_executable(practice_9 practice_9/main.cpp practice_9/LinkedList.h)

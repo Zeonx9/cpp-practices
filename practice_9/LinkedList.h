@@ -1,9 +1,10 @@
 //
-// Created by musht on 30.11.2022.
+// Created by musht on 23.12.2022.
 //
 
-#ifndef CPP_TRAININGS_LINKEDLIST_H
-#define CPP_TRAININGS_LINKEDLIST_H
+#ifndef CPP_TRAININGS_LINKEDLISTT_H
+#define CPP_TRAININGS_LINKEDLISTT_H
+
 
 template<class T>
 class BaseLinkedList {
@@ -17,10 +18,11 @@ private:
 
     // iterator of linked list
     class Iterator {
-    private:
+    protected:
         Node *node;
     public:
         explicit Iterator(Node *ptr) : node(ptr) {}
+        Iterator(const Iterator &it)=default;
 
         T& operator*() const {  //reference
             return node->value;
@@ -46,20 +48,21 @@ private:
         };
     };
 
+    // iterator that supports insertion
+    class InsertIterator : public Iterator {
+    public:
+        explicit InsertIterator(const Iterator it) : Iterator(it) {}
+        void insert(const T &value) {
+            this->node->next = new Node(this->node->value, this->node->next);
+            this->node->value = value;
+        }
+    };
+
     // private fields
     Node *head = nullptr;
     Node *tail = nullptr;
     bool moved = false;
 
-    // private functions
-    void clear() {
-        auto cur = head;
-        while (cur) {
-            auto next = cur->next;
-            delete cur;
-            cur = next;
-        }
-    }
 public:
     BaseLinkedList()=default;
     // list intializer constructor
@@ -153,6 +156,28 @@ public:
         return out;
     }
 
+    // inserts element into given position
+    void insert(Iterator position, const T &value) {
+        if (position == end()) {
+            push_front(value);
+            return;
+        }
+        InsertIterator ins(position);
+        ins.insert(value);
+        if (tail->next)
+            tail = tail->next;
+    }
+
+    void clear() {
+        auto cur = head;
+        while (cur) {
+            auto next = cur->next;
+            delete cur;
+            cur = next;
+        }
+        head = tail = nullptr;
+    }
+
     // linear time O(n)
     T& operator[](int i) {
         if (i == -1)
@@ -164,6 +189,7 @@ public:
 template<class T>
 class LinkedList : public BaseLinkedList<T> {
 public:
+    LinkedList() : BaseLinkedList<T>() {}
     LinkedList(std::initializer_list<T> ini) : BaseLinkedList<T>(ini) {}
     LinkedList(const LinkedList<T> &bll) : BaseLinkedList<T>(bll) {}
     LinkedList(LinkedList<T> &&bll) noexcept : BaseLinkedList<T>(bll) {}
@@ -187,4 +213,4 @@ public:
 };
 
 
-#endif //CPP_TRAININGS_LINKEDLIST_H
+#endif //CPP_TRAININGS_LINKEDLISTT_H
