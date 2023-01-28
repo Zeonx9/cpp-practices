@@ -24,3 +24,7 @@ add_executable(practice_9 practice_9/main.cpp practice_9/LinkedList.h)
 add_executable(practice_10 practice_10/main.cpp)
 
 add_executable(practice_11 practice_11/main.cpp)
+
+add_executable(practice_12 practice_12/main.cpp practice_12/graph.h)
+
+add_executable(practice_13 practice_13/main.cpp)
