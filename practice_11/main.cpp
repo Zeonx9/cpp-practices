@@ -58,9 +58,9 @@ public:
 #ifdef A
 int main() {
     std::vector<std::vector<std::string>> inp{
-        {"David","3","Ceviche"},{"Corina","10","Beef Burrito"},
-        {"David","3","Fried Chicken"},{"Carla","5","Water"},
-        {"Carla","5","Ceviche"},{"Rous","3","Ceviche"}
+        {"David","3","Ceviche"}, {"Corina","10","Beef Burrito"},
+        {"David","3","Fried Chicken"}, {"Carla","5","Water"},
+        {"Carla","5","Ceviche"}, {"Rous","3","Ceviche"}
     };
     auto res = Solution_display_table_of_food_oreders::displayTable(inp);
     std::cout << "done\n";
